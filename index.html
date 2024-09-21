@@ -23,7 +23,28 @@
             text-align: left;
         }
         #upload-container {
-            margin-bottom: 30px;
+            width: 210mm;
+            display: flex;
+            justify-content: space-between;
+            list-style-type: none;
+            margin: 0 0 30px;
+            padding: 0;
+        }
+        #upload-container li {
+            width: 33.33%;
+        }
+        #upload-container li:nth-child(1) {
+            text-align: left;
+            user-select: none;
+        }
+        #upload-container li:nth-child(2) {
+            text-align: center;
+        }
+        #image-upload {
+            text-align-last: center;
+        }
+        #upload-container li:nth-child(3) {
+            text-align: right;
         }
         #print-container {
             width: 210mm;
@@ -90,9 +111,17 @@
     </p>
 </header>
 
-<div id="upload-container">
-    <input type="file" id="image-upload" accept="image/*">
-</div>
+<menu id="upload-container">
+    <li role="none">&nbsp;</li>
+
+    <li>
+        <input type="file" id="image-upload" accept="image/*">
+    </li>
+
+    <li>
+        <button type="button" id="print-button" title="Click (or use CTRL+P to print)">Print</button>
+    </li>
+</menu>
 
 <div id="print-container"></div>
 
@@ -205,6 +234,12 @@
     });
 
     createLayout();
+
+    document.addEventListener('DOMContentLoaded', function() {
+        if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
+            document.getElementById('print-button').title = 'Click (or use CMD+P to print)';
+        }
+    });
 </script>
 </body>
 </html>
