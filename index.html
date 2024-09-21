@@ -236,6 +236,8 @@
     createLayout();
 
     document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('print-button').addEventListener('click', () => window.print());
+
         if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
             document.getElementById('print-button').title = 'Click (or use CMD+P to print)';
         }
