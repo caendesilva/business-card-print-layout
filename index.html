@@ -56,6 +56,7 @@
             background-color: #f0f0f0;
             font-size: 14px;
             color: #666;
+            cursor: pointer;
         }
         @media print {
             body * {
@@ -108,6 +109,10 @@
             const card = document.createElement('div');
             card.className = 'card placeholder';
             card.textContent = 'Upload an image';
+
+            // Make each placeholder clickable to trigger the file input
+            card.addEventListener('click', () => imageUpload.click());
+
             printContainer.appendChild(card);
         }
     }
