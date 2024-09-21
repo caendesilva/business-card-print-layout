@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGEL DP830 Business Card Print Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header, footer {
+            text-align: center;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+        #upload-container {
+            margin-bottom: 20px;
+        }
+        #print-container {
+            width: 210mm;
+            height: 297mm;
+            background-color: white;
+            border: 1px solid #000;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 15mm 85mm 10mm 85mm 15mm;
+            grid-template-rows: repeat(5, 55mm);
+            padding: 10mm 15mm;
+            gap: 0;
+        }
+
+        .card {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 1px dotted #ccc;
+
+            height: 55mm;
+            width: 85mm;
+        }
+        .card:nth-child(odd) {
+            grid-column: 2;
+        }
+        .card:nth-child(even) {
+            grid-column: 4;
+        }
+        .placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-size: 14px;
+            color: #666;
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #print-container, #print-container * {
+                visibility: visible;
+            }
+            #print-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                border: none;
+            }
+            .card {
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SIGEL DP830 Business Card Print Layout</h1>
+        <p>
+            Upload your business card design (85x55 mm) and print on A4 paper.<br>
+            <small>Remember to print at 100% scale (actual size) without margins, and using the best quality settings.</small>
+        </p>
+    </header>
+
+    <div id="upload-container">
+        <input type="file" id="image-upload" accept="image/*">
+    </div>
+
+    <div id="print-container"></div>
+
+    <footer>
+        <h2>Why was this created?</h2>
+        <p>This tool was created because the official SIGEL software is outdated, designed for Windows XP era, and cannot run on modern Windows or Mac systems. Additionally, the advertised Word templates are not readily available. This web-based solution provides an easy-to-use alternative for printing SIGEL DP830 business cards on any modern device with a web browser.</p>
+        <h3>About SIGEL DP830</h3>
+        <p>SIGEL GmbH DP830 business cards are high-quality, FSC-certified cards that can be printed on both sides. They are suitable for various purposes, including business cards, vouchers, and ID cards. Each pack contains 150 pieces (15 sheets) of 185 g/m² paper, with dimensions of 85 x 55 mm per card.</p>
+    </footer>
+
+    <script>
+        const printContainer = document.getElementById('print-container');
+        const imageUpload = document.getElementById('image-upload');
+
+        function createLayout() {
+            printContainer.innerHTML = '';
+            for (let i = 0; i < 10; i++) {
+                const card = document.createElement('div');
+                card.className = 'card placeholder';
+                card.textContent = 'Upload an image';
+                printContainer.appendChild(card);
+            }
+        }
+
+        function updateCards(imageUrl) {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.style.backgroundImage = `url(${imageUrl})`;
+                card.classList.remove('placeholder');
+                card.textContent = '';
+            });
+        }
+
+        imageUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => updateCards(e.target.result);
+                reader.readAsDataURL(file);
+            }
+        });
+
+        createLayout();
+    </script>
+</body>
+</html>
