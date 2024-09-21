@@ -20,26 +20,25 @@
             max-width: 800px;
         }
         #upload-container {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         #print-container {
             width: 210mm;
             height: 297mm;
             background-color: white;
-            border: 1px solid #000;
+            outline: 1px solid #000;
             margin-bottom: 20px;
             display: grid;
             grid-template-columns: 15mm 85mm 10mm 85mm 15mm;
             grid-template-rows: repeat(5, 55mm);
-            padding: 10mm 15mm;
             gap: 0;
+            align-content: center;
         }
-
         .card {
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            border: 1px dotted #ccc;
+            outline: 1px dotted #ccc;
 
             height: 55mm;
             width: 85mm;
@@ -69,10 +68,10 @@
                 position: absolute;
                 left: 0;
                 top: 0;
-                border: none;
+                outline: none;
             }
             .card {
-                border: none;
+                outline: none;
             }
         }
     </style>
@@ -80,8 +79,8 @@
 <body>
     <header>
         <h1>SIGEL DP830 Business Card Print Layout</h1>
-        <p>
-            Upload your business card design (85x55 mm) and print on A4 paper.<br>
+        <p style="margin-bottom: 0;">
+            Upload your business card design (85x55mm) and print on A4 paper.<br>
             <small>Remember to print at 100% scale (actual size) without margins, and using the best quality settings.</small>
         </p>
     </header>
@@ -95,8 +94,8 @@
     <footer>
         <h2>Why was this created?</h2>
         <p>This tool was created because the official SIGEL software is outdated, designed for Windows XP era, and cannot run on modern Windows or Mac systems. Additionally, the advertised Word templates are not readily available. This web-based solution provides an easy-to-use alternative for printing SIGEL DP830 business cards on any modern device with a web browser.</p>
-        <h3>About SIGEL DP830</h3>
-        <p>SIGEL GmbH DP830 business cards are high-quality, FSC-certified cards that can be printed on both sides. They are suitable for various purposes, including business cards, vouchers, and ID cards. Each pack contains 150 pieces (15 sheets) of 185 g/m² paper, with dimensions of 85 x 55 mm per card.</p>
+        <h3 style="margin-top: 30px;">About SIGEL DP830</h3>
+        <p>According to the manufacturer, SIGEL GmbH DP830 business cards are high-quality, FSC-certified cards that can be printed on both sides. They are suitable for various purposes, including business cards, vouchers, and ID cards. Each pack contains 150 pieces (15 sheets) of 185 g/m² paper, with dimensions of 85 x 55 mm per card.</p>
     </footer>
 
     <script>
