@@ -172,6 +172,28 @@
         }
     });
 
+    // Drag and drop functionality
+    printContainer.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        printContainer.style.border = '2px dashed #666';
+    });
+
+    printContainer.addEventListener('dragleave', () => {
+        printContainer.style.border = '';
+    });
+
+    printContainer.addEventListener('drop', (event) => {
+        event.preventDefault();
+        printContainer.style.border = '';
+
+        const file = event.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (e) => updateCards(e.target.result);
+            reader.readAsDataURL(file);
+        }
+    });
+
     createLayout();
 </script>
 </body>
